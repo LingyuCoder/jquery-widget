@@ -22,7 +22,7 @@ jQuery(function() {
 			fixed: false,
 			offset: [0, 0]
 		},
-		width: 300,
+		width: 'auto',
 		height: 'auto',
 		close: function() {},
 		open: function() {},
@@ -62,6 +62,7 @@ jQuery(function() {
 		var title = config.title;
 		var content = config.content;
 		var footer = config.footer;
+		var isOpen = false;
 
 		$widget.addClass(css.panel);
 		$widget.css({
@@ -129,12 +130,23 @@ jQuery(function() {
 		};
 
 		$widget.open = function() {
+			if(isOpen){
+				return;
+			}
+			isOpen = !isOpen;
 			$widget.show();
 			config.open.call($widget);
 		};
 		$widget.close = function() {
+			if(!isOpen){
+				return;
+			}
+			isOpen = !isOpen;
 			$widget.hide();
 			config.close.call($widget);
+		};
+		$widget.isOpened = function(){
+			return isOpen;
 		};
 
 		$widget.destroy = function() {
