@@ -1,4 +1,5 @@
-jQuery(function() {
+(function($) {
+	'use strict';
 	var zIndex = 1000000;
 	var defaultConfig = {
 		content: '',
@@ -28,7 +29,6 @@ jQuery(function() {
 		open: function() {},
 	};
 
-	var $ = jQuery;
 	var $body = $('body');
 	var $win = $(window);
 	var $doc = $(document);
@@ -179,8 +179,7 @@ jQuery(function() {
 		}
 
 		function mousedown(event) {
-			var self = $(this);
-			var offset = self.offset();
+			var offset = $(event.target).offset();
 			originMouse.x = event.pageX;
 			originMouse.y = event.pageY;
 			originPos.x = offset.left;
@@ -226,4 +225,4 @@ jQuery(function() {
 		initWidget($widget, config);
 		return $widget;
 	};
-});
+})(jQuery);
