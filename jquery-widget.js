@@ -1,4 +1,15 @@
-(function($) {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('jquery-widget', ['jquery-align'], factory);
+    } else if (typeof exports === 'object') {
+        // Node/CommonJS
+        factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($) {
 	'use strict';
 	var zIndex = 1000000;
 	var defaultConfig = {
@@ -225,4 +236,4 @@
 		initWidget($widget, config);
 		return $widget;
 	};
-})(jQuery);
+}));
